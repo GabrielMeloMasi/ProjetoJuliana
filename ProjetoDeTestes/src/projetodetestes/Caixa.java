@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package projetodetestes;
 
 import java.sql.Connection;
@@ -424,7 +428,7 @@ public class Caixa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnListarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarDadosActionPerformed
-
+    // Conecta o codigo com o banco,puxando produtos,valores e quantidade
         try {
             Connection con = Conexao.faz_conexao();
             String sql = "select * from produto";
@@ -440,7 +444,7 @@ public class Caixa extends javax.swing.JFrame {
 
         }
         rs.close();
-        con.close();
+        con.close();//Fecha o codigo
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -454,7 +458,8 @@ public class Caixa extends javax.swing.JFrame {
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
         try {
-
+             // Esse botão realiza o salvamento de tudo o que foi escrito nas textbox
+             //Produto,descrição,preço e quantidadde
             Connection con = Conexao.faz_conexao();
             String sql = "insert into produto(NomeProduto, Descricao, valorUnitario, QntdProduto) values (?, ?, ? , ?)";
 
@@ -489,6 +494,9 @@ public class Caixa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        
+        //Tela de cadastro,funcionário ou moderador,puxando usuário e senha baseados no banco
+        
         if(tfBusca.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Informe o ID");
         }else{
@@ -516,6 +524,9 @@ public class Caixa extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaCadastroActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        
+        //Metodo que printa na tela caso o usuario tente entrar no programa sem preencher os campos de login
+        
         if(tfUsuarioCadastro.getText().equals("")|| tfSenhaCadastro.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Usuario/Senha não informados");
         }else{
@@ -534,8 +545,11 @@ public class Caixa extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Cadastrado!");
                 tfUsuarioCadastro.setText("");
                 tfSenhaCadastro.setText("");
+                
+                //O metodo acima realiza a parte de cadastro de usuario
+                
             } catch (SQLException e) {
-
+                         
                 e.printStackTrace();
             }
         }
@@ -585,6 +599,8 @@ public class Caixa extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Caixa().setVisible(true);
+                
+                //Torna a interface do caixa visivel
             }
         });
     }
